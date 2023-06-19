@@ -1,10 +1,11 @@
-const mongoose = require('mongoose');
+import mongoose from "mongoose";
 
 const numbersTemplate = new mongoose.Schema({
-    number:{
-        type: String,
-        required: true
-    }
-})
+  number: {
+    type: String,
+    required: true,
+  },
+});
 
-module.exports = mongoose.model('mytable', numbersTemplate)
+module.exports =
+  mongoose.models.mytable || mongoose.model("mytable", numbersTemplate);

@@ -1,5 +1,4 @@
 "use client";
-import openhandweb from "../../public/openhandweb.png";
 import "./App.css";
 import React, { useEffect } from "react";
 import {
@@ -35,7 +34,6 @@ function App() {
       var temp1 = "";
       Object.entries(res.data).forEach((entry) => {
         const [key, value] = entry;
-        console.log(key);
         temp1 = temp1 + value.number.toString() + ", ";
       });
       setNumbers(temp1);
@@ -49,7 +47,6 @@ function App() {
 
   const handleChange = (event) => {
     setCurrentNumber(event.target.value);
-    console.log(event.target.value);
   };
 
   const theme = createTheme({
@@ -60,7 +57,6 @@ function App() {
 
   function getListNumbers() {
     fetchData();
-    console.log(numbers);
   }
 
   function onAddNumber() {
@@ -98,7 +94,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Image src="/openhandweb.png" width="30vh" alt={"Open Hand Logo"} />
+        <Image src={"/openhandweb.png"} width="30vh" alt={"Open Hand Logo"} />
         <h1>Welcome to OpenHand!</h1>
         <h2>Stay as long as you want, we love talking to you!</h2>
         <h2>Numbers Ready:</h2>
@@ -161,9 +157,11 @@ function App() {
         <Button variant="contained" sx={{ mt: 2 }} onClick={onRemoveNumber}>
           Remove Number
         </Button>
-        <Button variant="contained" sx={{ mt: 2 }} onClick={getListNumbers}>
-          Manual Refresh
-        </Button>
+        <a href={"/"}>
+          <Button variant="contained" sx={{ mt: 2 }}>
+            Manual Refresh
+          </Button>
+        </a>
       </header>
     </div>
   );

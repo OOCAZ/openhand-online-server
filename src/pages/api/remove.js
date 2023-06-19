@@ -7,7 +7,7 @@ export default async function handler(req, res) {
   numbersInit.collection
     .deleteMany({ number: req.body.number })
     .then((data) => {
-      res.json(data);
+      res.status(200).json(data);
     })
     .catch((err) => res.json(err));
 }
