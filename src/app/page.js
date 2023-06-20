@@ -94,9 +94,12 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Image src={"/openhandweb.png"} width="30vh" alt={"Open Hand Logo"} />
+        {/* <Image src="/openhandweb.png" alt="Open Hand Logo" />*/}
         <h1>Welcome to OpenHand!</h1>
-        <h2>Stay as long as you want, we love talking to you!</h2>
+        <h2 style={{ marginBottom: "5vh" }}>
+          Stay as long as you&apos;d like; your food is not going anywhere! And
+          we love talking to you!{" "}
+        </h2>
         <h2>Numbers Ready:</h2>
         <h1>{numbers}</h1>
         <Typography sx={{ m: 2 }} variant="h6">
@@ -158,7 +161,7 @@ function App() {
           Remove Number
         </Button>
         <a href={"/"}>
-          <Button variant="contained" sx={{ mt: 2 }}>
+          <Button variant="contained" sx={{ mt: 2, mb: 4 }}>
             Manual Refresh
           </Button>
         </a>

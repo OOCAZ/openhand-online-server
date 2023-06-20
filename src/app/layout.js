@@ -12,6 +12,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <meta httpEquiv="refresh" content="30" />
       <body className={inter.className}>{children}</body>
     </html>
   );
