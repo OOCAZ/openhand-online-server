@@ -13,7 +13,7 @@
     "axios": "^1.4.0",
     "concurrently": "^8.2.0",
     "eslint-config-next": "13.4.12",
-    "eslint": "8.45.0",
+    "eslint": "8.46.0",
     "mongoose": "^7.4.1",
     "mui-image": "^1.0.7",
     "next": "13.4.12",
