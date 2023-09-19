@@ -10,8 +10,9 @@
   },
   "dependencies": {
     "@mui/icons-material": "^5.14.3",
-    "axios": "^1.4.0",
+    "axios": "^1.5.0",
     "concurrently": "^8.2.1",
+
     "eslint-config-next": "13.4.12",
     "eslint": "8.47.0",
     "mongoose": "^7.5.0",
