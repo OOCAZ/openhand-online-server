@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "eslint-config-next": "13.4.19",
-    "@mui/icons-material": "^5.14.7",
+    "@mui/icons-material": "^5.14.8",
     "axios": "^1.5.0",
     "concurrently": "^8.2.1",
     "eslint": "8.48.0",
