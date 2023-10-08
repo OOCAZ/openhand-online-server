@@ -14,7 +14,7 @@
     "axios": "^1.5.0",
     "concurrently": "^8.2.1",
     "eslint": "8.49.0",
-    "mongoose": "^7.5.1",
+    "mongoose": "^7.5.2",
 
     "mui-image": "^1.0.7",
     "next": "13.5.4",
