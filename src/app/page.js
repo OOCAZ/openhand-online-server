@@ -20,13 +20,8 @@ function App() {
   const [numbers, setNumbers] = React.useState([]);
   const [currentNumber, setCurrentNumber] = React.useState(String);
   const [lastNumber, setLastNumber] = React.useState(String);
-  const [toggle, setToggle] = React.useState(true);
   const [addOpen, setAddOpen] = React.useState(false);
   const [removeOpen, setRemoveOpen] = React.useState(false);
-
-  const handleToggle = () => {
-    setToggle(!toggle);
-  };
 
   async function fetchData() {
     try {
@@ -43,7 +38,7 @@ function App() {
   }
   useEffect(() => {
     fetchData();
-  }, [toggle]);
+  }, []);
 
   const handleChange = (event) => {
     setCurrentNumber(event.target.value);
@@ -64,14 +59,11 @@ function App() {
       number: currentNumber,
     };
 
-    axios
-      .post("/api/add", addNumber)
-      .then((response) => console.log(response.status));
+    axios.post("/api/add", addNumber);
     setLastNumber(currentNumber);
     setAddOpen(true);
     setCurrentNumber("");
     getListNumbers();
-    handleToggle();
     return;
   }
 
@@ -80,14 +72,11 @@ function App() {
       number: currentNumber,
     };
 
-    axios
-      .post("/api/remove", removeNumber)
-      .then((response) => console.log(response.status));
+    axios.post("/api/remove", removeNumber);
     setLastNumber(currentNumber);
     setRemoveOpen(true);
     setCurrentNumber("");
     getListNumbers();
-    handleToggle();
     return;
   }
 
