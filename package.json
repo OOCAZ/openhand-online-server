@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@mui/icons-material": "^5.14.16",
+    "@mui/icons-material": "^5.14.18",
     "@netlify/plugin-nextjs": "^4.40.3-rc.0",
     "axios": "^1.6.1",
     "concurrently": "^8.2.1",
