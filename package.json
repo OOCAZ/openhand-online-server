@@ -11,7 +11,7 @@
   "dependencies": {
     "@mui/icons-material": "^5.14.19",
     "@netlify/plugin-nextjs": "^4.40.3-rc.0",
-    "axios": "^1.6.2",
+    "axios": "^1.6.3",
     "concurrently": "^8.2.1",
     "eslint": "8.54.0",
     "eslint-config-next": "13.5.6",
