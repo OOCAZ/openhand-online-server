@@ -101,6 +101,7 @@ function App() {
             <Alert
               action={
                 <IconButton
+                  data-testid="added-number"
                   aria-label="close"
                   color="inherit"
                   size="small"
@@ -120,6 +121,7 @@ function App() {
             <Alert
               action={
                 <IconButton
+                  data-testid="removed-number"
                   aria-label="close"
                   color="inherit"
                   size="small"
@@ -136,6 +138,7 @@ function App() {
             </Alert>
           </Collapse>
           <TextField
+            data-testid="input-field"
             id="outlined-basic"
             label="Number"
             variant="outlined"
@@ -143,10 +146,20 @@ function App() {
             value={currentNumber}
           />
         </ThemeProvider>
-        <Button variant="contained" sx={{ mt: 2 }} onClick={onAddNumber}>
+        <Button
+          data-testid="add-number"
+          variant="contained"
+          sx={{ mt: 2 }}
+          onClick={onAddNumber}
+        >
           Add Number
         </Button>
-        <Button variant="contained" sx={{ mt: 2 }} onClick={onRemoveNumber}>
+        <Button
+          data-testid="remove-number"
+          variant="contained"
+          sx={{ mt: 2 }}
+          onClick={onRemoveNumber}
+        >
           Remove Number
         </Button>
         <a href={"/"}>
