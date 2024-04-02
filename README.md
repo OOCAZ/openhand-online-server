@@ -1,4 +1,5 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/0c66bff8-b74c-42ca-a692-2aacd97a139f/deploy-status)](https://app.netlify.com/sites/splendorous-snickerdoodle-0e3599/deploys)
+[![Node.js CI](https://github.com/OOCAZ/openhand-online-server/actions/workflows/node.js.yml/badge.svg)](https://github.com/OOCAZ/openhand-online-server/actions/workflows/node.js.yml)
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
