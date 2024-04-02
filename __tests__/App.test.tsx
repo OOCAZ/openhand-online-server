@@ -19,8 +19,6 @@ describe("Page", () => {
     const input = screen.getByTestId("input-field");
     const addNumber = screen.getByTestId("add-number");
 
-    fireEvent.click(input);
-    fireEvent.change(input, "22");
     //added awaits to wait for log statements still need work on this...
     await fireEvent.click(addNumber);
     const addedNumber = screen.getByTestId("added-number");
@@ -32,8 +30,6 @@ describe("Page", () => {
     const input = screen.getByTestId("input-field");
     const removeNumber = screen.getByTestId("remove-number");
 
-    fireEvent.click(input);
-    fireEvent.change(input, "22");
     await fireEvent.click(removeNumber);
     const removedNumber = screen.getByTestId("removed-number");
     await fireEvent.click(removedNumber);
