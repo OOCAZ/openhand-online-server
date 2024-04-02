@@ -19,6 +19,7 @@ describe("Page", () => {
 
     fireEvent.click(input);
     fireEvent.change(input, "22");
+    //added awaits to wait for log statements still need work on this...
     await fireEvent.click(addNumber);
     const addedNumber = screen.getByTestId("added-number");
     await fireEvent.click(addedNumber);
