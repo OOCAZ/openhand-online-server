@@ -14,7 +14,7 @@
     "@netlify/plugin-nextjs": "^4.40.3-rc.0",
     "axios": "^1.6.4",
     "concurrently": "^8.2.1",
-    "eslint": "8.56.0",
+    "eslint": "9.0.0",
     "eslint-config-next": "14.1.2",
     "mongoose": "^8.0.0",
     "mui-image": "^1.0.7",
