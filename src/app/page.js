@@ -140,7 +140,7 @@ function App() {
                 <IconButton
                   data-testid="removed-number"
                   aria-label="close"
-                  color="inherit"
+                  color="yellow"
                   size="small"
                   onClick={() => {
                     setRemoveOpen(false);
