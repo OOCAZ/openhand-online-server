@@ -24,6 +24,7 @@ function App() {
   const [addOpen, setAddOpen] = React.useState(false);
   const [removeOpen, setRemoveOpen] = React.useState(false);
   const [errorOpen, setErrorOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
 
   async function fetchData() {
     try {
@@ -62,6 +63,7 @@ function App() {
     };
 
     var code = 555;
+    setLoading(true);
     await axios
       .post("/api/add", addNumber)
       .then((res) => {
@@ -74,8 +76,10 @@ function App() {
       });
     setLastNumber(currentNumber);
     if (code === 200) {
+      setLoading(false);
       setAddOpen(true);
     } else {
+      setLoading(false);
       setErrorOpen(true);
     }
     setCurrentNumber("");
@@ -89,6 +93,7 @@ function App() {
     };
 
     var code = 555;
+    setLoading(true);
     await axios
       .post("/api/remove", removeNumber)
       .then((res) => {
@@ -101,8 +106,10 @@ function App() {
       });
     setLastNumber(currentNumber);
     if (code === 200) {
+      setLoading(false);
       setRemoveOpen(true);
     } else {
+      setLoading(false);
       setErrorOpen(true);
     }
     setCurrentNumber("");
@@ -127,6 +134,26 @@ function App() {
         <Countdown style={{ marginBottom: 40 }} date={Date.now() + 30000} />
         <Typography sx={{ m: 2 }}> </Typography>
         <ThemeProvider theme={theme}>
+          <Collapse in={loading}>
+            <Alert
+              action={
+                <IconButton
+                  data-testid="removed-number"
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setRemoveOpen(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+              sx={{ mb: 2 }}
+            >
+              Loading
+            </Alert>
+          </Collapse>
           <Collapse in={addOpen}>
             <Alert
               action={
