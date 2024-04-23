@@ -15,6 +15,7 @@ import Alert from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
 import Collapse from "@mui/material/Collapse";
 import Countdown from "react-countdown";
+import { set } from "mongoose";
 
 function App() {
   const [numbers, setNumbers] = React.useState([]);
@@ -22,6 +23,7 @@ function App() {
   const [lastNumber, setLastNumber] = React.useState(String);
   const [addOpen, setAddOpen] = React.useState(false);
   const [removeOpen, setRemoveOpen] = React.useState(false);
+  const [errorOpen, setErrorOpen] = React.useState(false);
 
   async function fetchData() {
     try {
@@ -54,27 +56,55 @@ function App() {
     fetchData();
   }
 
-  function onAddNumber() {
+  async function onAddNumber() {
     const addNumber = {
       number: currentNumber,
     };
 
-    axios.post("/api/add", addNumber);
+    var code = 555;
+    await axios
+      .post("/api/add", addNumber)
+      .then((res) => {
+        code = res.status;
+        console.log(res);
+      })
+      .catch((err) => {
+        code = err.response.status;
+        console.log(err);
+      });
     setLastNumber(currentNumber);
-    setAddOpen(true);
+    if (code === 200) {
+      setAddOpen(true);
+    } else {
+      setErrorOpen(true);
+    }
     setCurrentNumber("");
     getListNumbers();
     return;
   }
 
-  function onRemoveNumber() {
+  async function onRemoveNumber() {
     const removeNumber = {
       number: currentNumber,
     };
 
-    axios.post("/api/remove", removeNumber);
+    var code = 555;
+    await axios
+      .post("/api/remove", removeNumber)
+      .then((res) => {
+        code = res.status;
+        console.log(res);
+      })
+      .catch((err) => {
+        code = err.response.status;
+        console.log(err);
+      });
     setLastNumber(currentNumber);
-    setRemoveOpen(true);
+    if (code === 200) {
+      setRemoveOpen(true);
+    } else {
+      setErrorOpen(true);
+    }
     setCurrentNumber("");
     getListNumbers();
     return;
@@ -135,6 +165,27 @@ function App() {
               sx={{ mb: 2 }}
             >
               Successfully removed the number: {lastNumber}
+            </Alert>
+          </Collapse>
+          <Collapse in={errorOpen}>
+            <Alert
+              action={
+                <IconButton
+                  data-testid="added-number"
+                  aria-label="close"
+                  color="red"
+                  size="small"
+                  onClick={() => {
+                    setErrorOpen(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+              sx={{ mb: 2 }}
+            >
+              There was an error performing the opertion with the number:{" "}
+              {lastNumber}
             </Alert>
           </Collapse>
           <TextField
