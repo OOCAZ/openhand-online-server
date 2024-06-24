@@ -16,7 +16,7 @@
     "concurrently": "^8.2.1",
     "eslint": "^8.56.0",
     "eslint-config-next": "^14.2.1",
-    "mongoose": "^8.3.2",
+    "mongoose": "^8.4.3",
     "mui-image": "^1.0.7",
     "next": "^14.2.2",
     "react": "^18.2.0",
