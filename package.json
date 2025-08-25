@@ -15,7 +15,7 @@
     "axios": "^1.6.4",
     "concurrently": "^8.2.1",
     "eslint": "^8.56.0",
-    "eslint-config-next": "^14.2.1",
+    "eslint-config-next": "^15.5.0",
     "mongoose": "^8.3.2",
     "mui-image": "^1.0.7",
     "next": "^14.2.2",
