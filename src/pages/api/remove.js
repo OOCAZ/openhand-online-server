@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
-
-const numbersTemplateCopy = require("../../models/NumbersModels");
+import numbersTemplateCopy from "../../models/NumbersModels.js";
 
 export default async function handler(req, res) {
   const numbersInit = new numbersTemplateCopy({

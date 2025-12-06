@@ -7,5 +7,5 @@ const numbersTemplate = new mongoose.Schema({
   },
 });
 
-module.exports =
-  mongoose.models.mytable || mongoose.model("mytable", numbersTemplate);
+export default mongoose.models.mytable ||
+  mongoose.model("mytable", numbersTemplate);
