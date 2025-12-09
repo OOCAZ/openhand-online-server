@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@mui/icons-material": "^5.15.18",
-    "@netlify/plugin-nextjs": "^5.2.2",
+    "@netlify/plugin-nextjs": "^5.14.6",
     "axios": "^1.6.4",
     "concurrently": "^8.2.1",
     "eslint": "^9.0.0",
