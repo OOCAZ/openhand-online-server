@@ -19,7 +19,7 @@
     "mongoose": "^8.20.0",
     "mui-image": "^1.0.7",
     "next": "16.0.7",
-    "react": "19.2.1",
+    "react": "19.2.3",
     "react-countdown": "^2.3.5",
     "react-dom": "19.2.1",
     "sharp": "^0.33.1"
