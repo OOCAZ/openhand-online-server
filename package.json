@@ -15,13 +15,13 @@
     "axios": "^1.6.4",
     "concurrently": "^8.2.1",
     "eslint": "^9.0.0",
-    "eslint-config-next": "16.0.7",
+    "eslint-config-next": "^16.0.7",
     "mongoose": "^8.3.2",
     "mui-image": "^1.0.7",
-    "next": "16.0.7",
-    "react": "19.2.1",
+    "next": "^16.0.7",
+    "react": "^19.2.1",
     "react-countdown": "^2.3.5",
-    "react-dom": "19.2.1",
+    "react-dom": "^19.2.1",
     "sharp": "^0.33.1"
   },
   "devDependencies": {
