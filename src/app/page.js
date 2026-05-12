@@ -1,6 +1,6 @@
 "use client";
 import "./App.css";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   TextField,
@@ -24,6 +24,7 @@ function App() {
   const [removeOpen, setRemoveOpen] = React.useState(false);
   const [errorOpen, setErrorOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
+  const [countdownDate] = useState(() => Date.now() + 30000);
 
   async function fetchData() {
     try {
@@ -38,7 +39,9 @@ function App() {
       console.log(err);
     }
   }
+
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     fetchData();
   }, []);
 
@@ -130,7 +133,7 @@ function App() {
         <Typography sx={{ m: 2 }} variant="h6">
           Countdown to Refresh:
         </Typography>
-        <Countdown style={{ marginBottom: 40 }} date={Date.now() + 30000} />
+        <Countdown style={{ marginBottom: 40 }} date={countdownDate} />
         <Typography sx={{ m: 2 }}> </Typography>
         <ThemeProvider theme={theme}>
           <Collapse in={loading}>
