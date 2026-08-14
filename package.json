@@ -16,7 +16,7 @@
     "@mui/material": "^9.3.1",
     "@netlify/plugin-nextjs": "^5.15.13",
     "axios": "^1.19.0",
-    "concurrently": "^9.2.4",
+    "concurrently": "^10.0.4",
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.3.0",
     "mongoose": "^9.9.2",
