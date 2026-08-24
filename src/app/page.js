@@ -9,24 +9,67 @@ import {
   Typography,
   Snackbar,
 } from "@mui/material";
-import Image from "mui-image";
 import axios from "axios";
-import CloseIcon from "@mui/icons-material/Close";
 import Alert from "@mui/material/Alert";
-import IconButton from "@mui/material/IconButton";
 import Countdown from "react-countdown";
+
+const theme = createTheme({
+  palette: {
+    mode: "dark",
+    primary: {
+      main: "#5c9eff",
+    },
+  },
+  shape: {
+    borderRadius: 10,
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          textTransform: "none",
+          fontWeight: 600,
+          padding: "14px 36px",
+          fontSize: "clamp(1rem, 2vw, 1.3rem)",
+        },
+      },
+    },
+    MuiTextField: {
+      styleOverrides: {
+        root: {
+          width: "100%",
+          maxWidth: "400px",
+        },
+      },
+    },
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          fontSize: "clamp(1rem, 2vw, 1.3rem)",
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          fontSize: "clamp(1rem, 2vw, 1.3rem)",
+        },
+      },
+    },
+  },
+});
 
 function App() {
   const [numbers, setNumbers] = React.useState([]);
-  const [currentNumber, setCurrentNumber] = React.useState(String);
+  const [currentNumber, setCurrentNumber] = React.useState("");
   const [loading, setLoading] = React.useState(false);
+  const [controlsVisible, setControlsVisible] = React.useState(true);
   const [countdownDate] = useState(() => Date.now() + 30000);
 
-  // Single snackbar state
   const [snackbar, setSnackbar] = React.useState({
     open: false,
     message: "",
-    severity: "success", // "success" | "error" | "info"
+    severity: "success",
   });
 
   function showSnackbar(message, severity = "success") {
@@ -61,128 +104,132 @@ function App() {
     setCurrentNumber(event.target.value);
   };
 
-  const theme = createTheme({
-    palette: {
-      mode: "dark",
-    },
-  });
-
-  function getListNumbers() {
-    fetchData();
-  }
-
   async function onAddNumber() {
-    const addNumber = {
-      number: currentNumber,
-    };
-
+    const addNumber = { number: currentNumber };
     var code = 555;
     setLoading(true);
     await axios
       .post("/api/add", addNumber)
       .then((res) => {
         code = res.status;
-        console.log(res);
       })
       .catch((err) => {
         code = err.response.status;
-        console.log(err);
       });
     const submittedNumber = currentNumber;
     setLoading(false);
     if (code === 200) {
-      showSnackbar(`Successfully added the number: ${submittedNumber}`, "success");
+      showSnackbar(`Successfully added: ${submittedNumber}`, "success");
     } else {
-      showSnackbar(`There was an error performing the operation with the number: ${submittedNumber}`, "error");
+      showSnackbar(`Error with number: ${submittedNumber}`, "error");
     }
     setCurrentNumber("");
-    getListNumbers();
-    return;
+    fetchData();
   }
 
   async function onRemoveNumber() {
-    const removeNumber = {
-      number: currentNumber,
-    };
-
+    const removeNumber = { number: currentNumber };
     var code = 555;
     setLoading(true);
     await axios
       .post("/api/remove", removeNumber)
       .then((res) => {
         code = res.status;
-        console.log(res);
       })
       .catch((err) => {
         code = err.response.status;
-        console.log(err);
       });
     const submittedNumber = currentNumber;
     setLoading(false);
     if (code === 200) {
-      showSnackbar(`Successfully removed the number: ${submittedNumber}`, "success");
+      showSnackbar(`Successfully removed: ${submittedNumber}`, "success");
     } else {
-      showSnackbar(`There was an error performing the operation with the number: ${submittedNumber}`, "error");
+      showSnackbar(`Error with number: ${submittedNumber}`, "error");
     }
     setCurrentNumber("");
-    getListNumbers();
-    return;
+    fetchData();
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <Image src="/openhandweb.png" alt="Open Hand Logo" />*/}
-        <h1>Welcome to OpenHand!</h1>
-        <h2 style={{ marginBottom: "5vh" }}>
-          Stay as long as you&apos;d like; your food is not going anywhere! And
-          we love talking to you!{" "}
-        </h2>
-        <h2>Numbers Ready:</h2>
-        <h1 data-testid="numbers">{numbers}</h1>
-        <Typography sx={{ m: 2 }} variant="h6">
-          Countdown to Refresh:
-        </Typography>
-        <Countdown style={{ marginBottom: 40 }} date={countdownDate} />
-        <Typography sx={{ m: 2 }}> </Typography>
-        <ThemeProvider theme={theme}>
-          <TextField
-            data-testid="input-field"
-            id="outlined-basic"
-            label="Number"
-            variant="outlined"
-            onChange={handleChange}
-            value={currentNumber}
-          />
-        </ThemeProvider>
-        <Button
-          data-testid="add-number"
-          variant="contained"
-          sx={{ mt: 2 }}
-          onClick={onAddNumber}
-          disabled={loading}
-        >
-          {loading ? "Loading..." : "Add Number"}
-        </Button>
-        <Button
-          data-testid="remove-number"
-          variant="contained"
-          sx={{ mt: 2 }}
-          onClick={onRemoveNumber}
-          disabled={loading}
-        >
-          {loading ? "Loading..." : "Remove Number"}
-        </Button>
-        <a href={"/"}>
-          <Button variant="contained" sx={{ mt: 2, mb: 4 }}>
-            Manual Refresh
-          </Button>
-        </a>
-      </header>
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <header className="App-header">
+          <h1 className="app-title">Welcome to OpenHand!</h1>
+          <h2 className="app-subtitle" style={{ marginBottom: "1.5rem" }}>
+            Stay as long as you&apos;d like; your food is not going anywhere! And
+            we love talking to you!{" "}
+          </h2>
+
+          <Typography variant="subtitle2" sx={{ opacity: 0.6, mb: 0.5, fontSize: "clamp(1rem, 2vw, 1.4rem)" }}>
+            Numbers Ready
+          </Typography>
+          <div className="numbers-display" data-testid="numbers">
+            {numbers || "—"}
+          </div>
+
+          <div className="countdown-section">
+            <Typography variant="caption" sx={{ fontSize: "clamp(0.9rem, 1.5vw, 1.2rem)" }}>
+              Auto-refresh in
+            </Typography>
+            <Countdown date={countdownDate} />
+          </div>
+
+          {controlsVisible && (
+            <>
+              <TextField
+                data-testid="input-field"
+                id="outlined-basic"
+                label="Enter a number"
+                variant="outlined"
+                size="small"
+                onChange={handleChange}
+                value={currentNumber}
+              />
+
+              <div className="button-group">
+                <Button
+                  data-testid="add-number"
+                  variant="contained"
+                  onClick={onAddNumber}
+                  disabled={loading || !currentNumber}
+                >
+                  {loading ? "Loading..." : "Add Number"}
+                </Button>
+                <Button
+                  data-testid="remove-number"
+                  variant="contained"
+                  color="secondary"
+                  onClick={onRemoveNumber}
+                  disabled={loading || !currentNumber}
+                >
+                  {loading ? "Loading..." : "Remove Number"}
+                </Button>
+                <Button
+                  variant="outlined"
+                  href="/"
+                  sx={{ borderColor: "rgba(255,255,255,0.2)", color: "#ccc" }}
+                >
+                  Refresh
+                </Button>
+              </div>
+            </>
+          )}
+
+          <div className="button-group" style={{ marginTop: controlsVisible ? "1.5rem" : "2rem" }}>
+            <Button
+              variant="outlined"
+              onClick={() => setControlsVisible((v) => !v)}
+              sx={{ borderColor: "rgba(255,255,255,0.2)", color: "#ccc" }}
+            >
+              {controlsVisible ? "Hide Controls" : "Show Controls"}
+            </Button>
+          </div>
+        </header>
+      </div>
 
       <Snackbar
         open={snackbar.open}
-        autoHideDuration={5000}
+        autoHideDuration={4000}
         onClose={handleSnackbarClose}
         anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
       >
@@ -195,7 +242,7 @@ function App() {
           {snackbar.message}
         </Alert>
       </Snackbar>
-    </div>
+    </ThemeProvider>
   );
 }
 
