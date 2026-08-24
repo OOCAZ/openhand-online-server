@@ -7,24 +7,36 @@ import {
   ThemeProvider,
   createTheme,
   Typography,
+  Snackbar,
 } from "@mui/material";
 import Image from "mui-image";
 import axios from "axios";
 import CloseIcon from "@mui/icons-material/Close";
 import Alert from "@mui/material/Alert";
 import IconButton from "@mui/material/IconButton";
-import Collapse from "@mui/material/Collapse";
 import Countdown from "react-countdown";
 
 function App() {
   const [numbers, setNumbers] = React.useState([]);
   const [currentNumber, setCurrentNumber] = React.useState(String);
-  const [lastNumber, setLastNumber] = React.useState(String);
-  const [addOpen, setAddOpen] = React.useState(false);
-  const [removeOpen, setRemoveOpen] = React.useState(false);
-  const [errorOpen, setErrorOpen] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
   const [countdownDate] = useState(() => Date.now() + 30000);
+
+  // Single snackbar state
+  const [snackbar, setSnackbar] = React.useState({
+    open: false,
+    message: "",
+    severity: "success", // "success" | "error" | "info"
+  });
+
+  function showSnackbar(message, severity = "success") {
+    setSnackbar({ open: true, message, severity });
+  }
+
+  function handleSnackbarClose(event, reason) {
+    if (reason === "clickaway") return;
+    setSnackbar((prev) => ({ ...prev, open: false }));
+  }
 
   async function fetchData() {
     try {
@@ -76,13 +88,12 @@ function App() {
         code = err.response.status;
         console.log(err);
       });
-    setLastNumber(currentNumber);
+    const submittedNumber = currentNumber;
+    setLoading(false);
     if (code === 200) {
-      setLoading(false);
-      setAddOpen(true);
+      showSnackbar(`Successfully added the number: ${submittedNumber}`, "success");
     } else {
-      setLoading(false);
-      setErrorOpen(true);
+      showSnackbar(`There was an error performing the operation with the number: ${submittedNumber}`, "error");
     }
     setCurrentNumber("");
     getListNumbers();
@@ -106,13 +117,12 @@ function App() {
         code = err.response.status;
         console.log(err);
       });
-    setLastNumber(currentNumber);
+    const submittedNumber = currentNumber;
+    setLoading(false);
     if (code === 200) {
-      setLoading(false);
-      setRemoveOpen(true);
+      showSnackbar(`Successfully removed the number: ${submittedNumber}`, "success");
     } else {
-      setLoading(false);
-      setErrorOpen(true);
+      showSnackbar(`There was an error performing the operation with the number: ${submittedNumber}`, "error");
     }
     setCurrentNumber("");
     getListNumbers();
@@ -136,87 +146,6 @@ function App() {
         <Countdown style={{ marginBottom: 40 }} date={countdownDate} />
         <Typography sx={{ m: 2 }}> </Typography>
         <ThemeProvider theme={theme}>
-          <Collapse in={loading}>
-            <Alert
-              action={
-                <IconButton
-                  data-testid="removed-number"
-                  aria-label="close"
-                  color="yellow"
-                  size="small"
-                  onClick={() => {
-                    setRemoveOpen(false);
-                  }}
-                >
-                  <CloseIcon fontSize="inherit" />
-                </IconButton>
-              }
-              sx={{ mb: 2 }}
-            >
-              Loading
-            </Alert>
-          </Collapse>
-          <Collapse in={addOpen}>
-            <Alert
-              action={
-                <IconButton
-                  data-testid="added-number"
-                  aria-label="close"
-                  color="inherit"
-                  size="small"
-                  onClick={() => {
-                    setAddOpen(false);
-                  }}
-                >
-                  <CloseIcon fontSize="inherit" />
-                </IconButton>
-              }
-              sx={{ mb: 2 }}
-            >
-              Successfully added the number: {lastNumber}
-            </Alert>
-          </Collapse>
-          <Collapse in={removeOpen}>
-            <Alert
-              action={
-                <IconButton
-                  data-testid="removed-number"
-                  aria-label="close"
-                  color="inherit"
-                  size="small"
-                  onClick={() => {
-                    setRemoveOpen(false);
-                  }}
-                >
-                  <CloseIcon fontSize="inherit" />
-                </IconButton>
-              }
-              sx={{ mb: 2 }}
-            >
-              Successfully removed the number: {lastNumber}
-            </Alert>
-          </Collapse>
-          <Collapse in={errorOpen}>
-            <Alert
-              action={
-                <IconButton
-                  data-testid="added-number"
-                  aria-label="close"
-                  color="red"
-                  size="small"
-                  onClick={() => {
-                    setErrorOpen(false);
-                  }}
-                >
-                  <CloseIcon fontSize="inherit" />
-                </IconButton>
-              }
-              sx={{ mb: 2 }}
-            >
-              There was an error performing the opertion with the number:{" "}
-              {lastNumber}
-            </Alert>
-          </Collapse>
           <TextField
             data-testid="input-field"
             id="outlined-basic"
@@ -231,16 +160,18 @@ function App() {
           variant="contained"
           sx={{ mt: 2 }}
           onClick={onAddNumber}
+          disabled={loading}
         >
-          Add Number
+          {loading ? "Loading..." : "Add Number"}
         </Button>
         <Button
           data-testid="remove-number"
           variant="contained"
           sx={{ mt: 2 }}
           onClick={onRemoveNumber}
+          disabled={loading}
         >
-          Remove Number
+          {loading ? "Loading..." : "Remove Number"}
         </Button>
         <a href={"/"}>
           <Button variant="contained" sx={{ mt: 2, mb: 4 }}>
@@ -248,6 +179,22 @@ function App() {
           </Button>
         </a>
       </header>
+
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={5000}
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert
+          onClose={handleSnackbarClose}
+          severity={snackbar.severity}
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          {snackbar.message}
+        </Alert>
+      </Snackbar>
     </div>
   );
 }
