@@ -29,8 +29,8 @@ const theme = createTheme({
         root: {
           textTransform: "none",
           fontWeight: 600,
-          padding: "14px 36px",
-          fontSize: "clamp(1rem, 2vw, 1.3rem)",
+          padding: "18px 48px",
+          fontSize: "clamp(1.1rem, 2.5vw, 2rem)",
         },
       },
     },
@@ -38,21 +38,21 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           width: "100%",
-          maxWidth: "400px",
+          maxWidth: "600px",
         },
       },
     },
     MuiInputBase: {
       styleOverrides: {
         root: {
-          fontSize: "clamp(1rem, 2vw, 1.3rem)",
+          fontSize: "clamp(1.1rem, 2.5vw, 2rem)",
         },
       },
     },
     MuiInputLabel: {
       styleOverrides: {
         root: {
-          fontSize: "clamp(1rem, 2vw, 1.3rem)",
+          fontSize: "clamp(1.1rem, 2.5vw, 2rem)",
         },
       },
     },
@@ -160,7 +160,7 @@ function App() {
             we love talking to you!{" "}
           </h2>
 
-          <Typography variant="subtitle2" sx={{ opacity: 0.6, mb: 0.5, fontSize: "clamp(1rem, 2vw, 1.4rem)" }}>
+          <Typography variant="subtitle2" sx={{ opacity: 0.6, mb: 0.5, fontSize: "clamp(1rem, 2.5vw, 2.2rem)" }}>
             Numbers Ready
           </Typography>
           <div className="numbers-display" data-testid="numbers">
@@ -168,7 +168,7 @@ function App() {
           </div>
 
           <div className="countdown-section">
-            <Typography variant="caption" sx={{ fontSize: "clamp(0.9rem, 1.5vw, 1.2rem)" }}>
+            <Typography variant="caption" sx={{ fontSize: "clamp(0.9rem, 2vw, 1.8rem)" }}>
               Auto-refresh in
             </Typography>
             <Countdown date={countdownDate} />
