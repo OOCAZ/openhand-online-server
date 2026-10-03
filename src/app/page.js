@@ -49,10 +49,27 @@ const theme = createTheme({
         },
       },
     },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        // Widen the border notch so the enlarged floating label fits in the
+        // gap instead of being painted over by the border line.
+        notchedOutline: {
+          "& legend": {
+            fontSize: "clamp(0.85rem, 1.9vw, 1.5rem)",
+          },
+        },
+      },
+    },
     MuiInputLabel: {
       styleOverrides: {
         root: {
           fontSize: "clamp(1.1rem, 2.5vw, 2rem)",
+          // When the label floats (field focused or filled), lift it clear of
+          // the input text and scale it down so it sits on the border instead
+          // of overlapping the value.
+          "&.MuiInputLabel-shrink": {
+            transform: "translate(14px, -9px) scale(0.75)",
+          },
         },
       },
     },
