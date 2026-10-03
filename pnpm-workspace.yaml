@@ -1,4 +1,6 @@
 allowBuilds:
-  '@parcel/watcher': set this to true or false
+  '@parcel/watcher': true
   sharp: true
   unrs-resolver: true
+minimumReleaseAgeExclude:
+  - mongoose@9.10.4

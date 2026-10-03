@@ -12,27 +12,27 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
-    "@mui/icons-material": "^5.18.0",
+    "@mui/icons-material": "^9.4.0",
     "@mui/material": "^9.4.0",
-    "@netlify/plugin-nextjs": "^5.15.13",
+    "@netlify/plugin-nextjs": "^5.16.1",
     "axios": "^1.20.0",
-    "concurrently": "^9.2.4",
+    "concurrently": "^10.0.5",
     "eslint": "^9.39.5",
-    "eslint-config-next": "^16.3.4",
-    "mongoose": "^9.9.5",
+    "eslint-config-next": "^16.3.8",
+    "mongoose": "^9.10.4",
     "mui-image": "^1.0.9",
-    "next": "^16.3.4",
-    "react": "^19.2.8",
+    "next": "^16.3.8",
+    "react": "^19.3.0",
     "react-countdown": "^2.3.6",
-    "react-dom": "^19.2.8",
-    "sharp": "^0.35.4"
+    "react-dom": "^19.3.0",
+    "sharp": "^0.35.5"
   },
   "devDependencies": {
-    "@testing-library/jest-dom": "^6.10.0",
+    "@testing-library/jest-dom": "^7.0.1",
     "@testing-library/react": "^16.3.3",
     "@types/jest": "^30.0.0",
-    "jest": "^30.5.1",
-    "jest-environment-jsdom": "^30.5.1",
+    "jest": "^30.5.2",
+    "jest-environment-jsdom": "^30.5.2",
     "ts-node": "^10.9.2"
   }
 }
