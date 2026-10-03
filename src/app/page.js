@@ -47,6 +47,11 @@ const theme = createTheme({
         root: {
           fontSize: "clamp(1.1rem, 2.5vw, 2rem)",
         },
+        input: {
+          // Give the value room to breathe inside the field.
+          paddingTop: "1.1rem",
+          paddingBottom: "1.1rem",
+        },
       },
     },
     MuiOutlinedInput: {
@@ -68,7 +73,7 @@ const theme = createTheme({
           // the input text and scale it down so it sits on the border instead
           // of overlapping the value.
           "&.MuiInputLabel-shrink": {
-            transform: "translate(14px, -9px) scale(0.75)",
+            transform: "translate(14px, -1.4rem) scale(0.75)",
           },
         },
       },
@@ -198,7 +203,6 @@ function App() {
                 id="outlined-basic"
                 label="Enter a number"
                 variant="outlined"
-                size="small"
                 onChange={handleChange}
                 value={currentNumber}
               />
