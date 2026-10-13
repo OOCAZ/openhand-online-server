@@ -21,7 +21,7 @@
     "eslint-config-next": "^16.3.8",
     "mongoose": "^9.10.4",
     "mui-image": "^1.0.9",
-    "next": "^16.3.8",
+    "next": "^16.4.0",
     "react": "^19.3.0",
     "react-countdown": "^2.3.6",
     "react-dom": "^19.3.0",
